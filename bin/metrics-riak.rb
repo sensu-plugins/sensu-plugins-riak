@@ -8,12 +8,14 @@
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/metric/cli'
 require 'net/http'
 require 'socket'
 require 'json'
 
+#
+# Riak Metrics
+#
 class RiakMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :hostname,
          short: '-h HOSTNAME',
