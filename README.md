@@ -1,6 +1,6 @@
 ## Sensu-Plugins-riak
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-riak.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-riak)
+[ ![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-riak.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-riak)
 [![Gem Version](https://badge.fury.io/rb/sensu-plugins-riak.svg)](http://badge.fury.io/rb/sensu-plugins-riak)
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak)
