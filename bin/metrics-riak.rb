@@ -171,17 +171,17 @@ class RiakMetrics < Sensu::Plugin::Metric::CLI::Graphite
     if config[:include]
       include = cli_arguments
     elsif config[:include_file] != ''
-      include = open(config[:include_file]).read().split
+      include = open(config[:include_file]).read.split
     elsif config[:exclude]
       exclude = cli_arguments
     elsif config[:exclude_file] != ''
-      exclude = open(config[:exclude_file]).read().split
+      exclude = open(config[:exclude_file]).readsplit
     end
 
     stats = JSON.parse(res.body)
 
     if !include.empty?
-      print_metrics(stats.reject { |k, _v| not include.include?(k) })
+      print_metrics(stats.reject { |k, _v| !include.include?(k) })
     elsif !exclude.empty?
       print_metrics(stats.reject { |k, _v| exclude.include?(k) })
     else
