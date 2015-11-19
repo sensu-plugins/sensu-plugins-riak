@@ -21,7 +21,9 @@
  
  Only one of the four available flags will be used, where the precedence order is, -i,-I,-e,-E.
  
- If include or excluded is not manually specified, previous version filter is used.
+ If include or excluded is not manually specified, standard filtering is used.
+ 
+ If using a file, metrics are either space separated or newline separated.
 
 ```
 {
