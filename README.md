@@ -18,7 +18,10 @@
 **metrics-riak**
 
  Include only output the specified values, where exclude remove those not wanted.
+ 
  Only one of the four available flags will be used, where the precedence order is, -i,-I,-e,-E.
+ 
+ If include or excluded is not manually specified, previous version filter is used.
 
 ```
 {
