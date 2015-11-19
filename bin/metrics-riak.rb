@@ -41,14 +41,45 @@ class RiakMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}.riak"
 
+  option :exclude,
+         description: 'List of metrics not to collect',
+         short: '-e',
+         long: '--exclude',
+         boolean: true,
+         default: false
+
+  option :include,
+         description: 'List of metrics to only collect',
+         short: '-i',
+         long: '--include',
+         boolean: true,
+         default: false
+
+  option :exclude_file,
+         description: 'File with list of metrics not to collect',
+         short: '-E FILE',
+         long: '--exclude-file FILE',
+         default: ''
+
+  option :include_file,
+         description: 'File with list of metrics to only collect',
+         short: '-I FILE',
+         long: '--include-file FILE',
+         default: ''
+
+  def print_metrics(stats)
+    stats.select { |k, _v| stats[k].is_a? Integer }.each do |k, v|
+      output "#{config[:scheme]}.#{k}", v
+    end
+  end
+
   def run
     res = Net::HTTP.start(config[:hostname], config[:port]) do |http|
       req = Net::HTTP::Get.new("/#{config[:path]}")
       http.request(req)
     end
 
-    stats = JSON.parse(res.body)
-
+    include = []
     exclude = %w(vnode_index_reads
                  vnode_index_writes
                  vnode_index_writes_postings
@@ -102,7 +133,8 @@ class RiakMetrics < Sensu::Plugin::Metric::CLI::Graphite
                  sys_thread_pool_size
                  sys_wordsize
                  ring_num_partitions
-                 ring_creation_size pbc_connects_total
+                 ring_creation_size
+                 pbc_connects_total
                  pbc_connects
                  pbc_active
                  executing_mappers
@@ -136,10 +168,25 @@ class RiakMetrics < Sensu::Plugin::Metric::CLI::Graphite
                  riak_pipe_vnodeq_max
                  riak_pipe_vnodeq_total)
 
-    stats.reject { |k, _v| exclude.include?(k) }.select { |k, _v| stats[k].is_a? Integer }.each do |k, v|
-      output "#{config[:scheme]}.#{k}", v
+    if config[:include]
+      include = cli_arguments
+    elsif config[:include_file] != ''
+      include = open( config[:include_file] ).read().split
+    elsif config[:exclude]
+      exclude = cli_arguments
+    elsif config[:exclude_file] != ''
+      exclude = open( config[:exclude_file] ).read().split
     end
 
+    stats = JSON.parse(res.body)
+
+    if not include.empty?
+      print_metrics( stats.reject { |k, _v| not include.include?(k) } )
+    elsif not exclude.empty?
+      print_metrics( stats.reject { |k, _v| exclude.include?(k) } )
+    else
+      print_metrics( stats )
+    end
     ok
   end
 end
