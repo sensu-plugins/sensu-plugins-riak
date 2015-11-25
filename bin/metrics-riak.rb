@@ -175,7 +175,7 @@ class RiakMetrics < Sensu::Plugin::Metric::CLI::Graphite
     elsif config[:exclude]
       exclude = cli_arguments
     elsif config[:exclude_file] != ''
-      exclude = open(config[:exclude_file]).readsplit
+      exclude = open(config[:exclude_file]).read.split
     end
 
     stats = JSON.parse(res.body)
