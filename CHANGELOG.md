@@ -6,6 +6,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [Unreleased][unreleased]
 - nothing
 
+## [0.0.5] - 2015-11-19
+### Changed
+- added option to specify what metrics to include or exclude,
+  either through reading a file or via command argument.
+
 ## [0.0.4] - 2015-08-04
 ### Changed
 - general cleanup, no code changes
