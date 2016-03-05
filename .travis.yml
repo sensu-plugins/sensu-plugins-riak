@@ -16,13 +16,15 @@ notifications:
     on_failure: always
 script:
 - bundle exec rake default
+- gem build sensu-plugins-riak.gemspec
+- gem install sensu-plugins-riak-*.gem
 deploy:
   provider: rubygems
   api_key:
-    secure: jWxIEU0/OqVD4TLjfL7ReElxmJxw28PH6zhHyS1KaG72WVG1kBtFH3N1l0Z+m2LDPCR4iavzaRRAfsXK5DkMVfPtc7SVN2imlwkexP1sf1hW+aNvnSeiZYKfVrKo/PJyRUPMMRUlxNuvrLcIFCA1FLW7pe6fUZ4qjjchJbJJCts=
+    secure: C8x+OjcJnwpR2GPqxytq2HQEfCA90z3KV5OuQs+fusM+htKacOCP6RnpawXeRNAc681jfyDA3YJvNY9I8nCAN/LKP1H8Eu4bO9qzQ5OeAM0bFQ6BGY5bb8hBwSz0BZRIak/kpHaVTi/gkH+a+2rIJ1UuBGlpHkzqrlBx4JBnso0=
   gem: sensu-plugins-riak
   on:
-    tags: true
+    ags: true
     all_branches: true
     rvm: 1.9.3
     rvm: 2.0

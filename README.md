@@ -5,7 +5,6 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-riak)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-riak.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-riak)
-[![Codeship Status for sensu-plugins/sensu-plugins-riak](https://codeship.com/projects/a68be280-d4b3-0132-a281-4e043b6b23b5/status?branch=master)](https://codeship.com/projects/77865)
 
 ## Functionality
 
